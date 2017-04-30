@@ -1,0 +1,65 @@
+<h4>
+  <a href="javascript:void(0)" (click)="router.navigate(['client'])">Cliente</a>
+  > {{dados.name}} > Regras
+</h4>
+
+<div class="w3-container">
+  <button class="w3-btn w3-block w3-blue button_new" (click)="openModal()">Novo</button>
+  <table class="w3-table w3-bordered">
+    <tr>
+      <th>Prefixo</th>
+      <th>Descrição</th>
+      <th>Parametros</th>
+      <th></th>
+    </tr> 
+    <tbody *ngIf="dados.rules.length > 0">
+      <tr *ngFor="let item of dados.rules">
+        <td>{{item.prefix}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.param}}</td>
+        <td>
+          <a href="javascript:void(0)"  (click)="openModal(item)">
+            Editar
+          </a>
+        </td>
+      </tr>   
+    </tbody>
+    <tbody *ngIf="dados.rules.length == 0">
+      <tr>
+        <td colspan="4" class="td_nenhum_registro">
+          Nenhum registro encontrado
+        </td>
+      </tr>   
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="w3-modal" [ngStyle]="{'display': displayModal}">
+  <div class="w3-modal-content  w3-animate-zoom">
+    <header class="w3-container w3-indigo"> 
+      <h2>{{dados.name}}</h2>
+    </header>
+
+
+    <div class="w3-container">
+      <div class="w3-section">
+        <label>Prefixo</label>
+        <input class="w3-input w3-margin-bottom" type="text" [(ngModel)]="dadoAtual.prefix">
+        <label>Descrição</label>
+        <input class="w3-input w3-margin-bottom" type="text" [(ngModel)]="dadoAtual.description">
+        <label>Parametro</label>
+        <input class="w3-input w3-margin-bottom" type="text" [(ngModel)]="dadoAtual.param">
+      </div>
+    </div>
+
+
+    <footer class="w3-container">
+      <div class="w3-bar w3-margin-bottom">
+        <button class="w3-bar-item w3-button w3-blue" style="width:50%" (click)="saveModal()">Concluir</button>
+        <button class="w3-bar-item w3-button w3-teal" style="width:50%" (click)="closeModal()">Cancelar</button>
+      </div>
+    </footer>
+  </div>
+</div>

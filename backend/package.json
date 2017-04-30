@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend of the project test of Catho",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Renato Bueno da Silva",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.3",
+    "mysql": "^2.13.0",
+    "restify": "^4.3.0"
+  }
+}

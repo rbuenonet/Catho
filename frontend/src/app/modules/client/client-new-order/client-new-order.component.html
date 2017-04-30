@@ -1,0 +1,62 @@
+<h4>
+  <a href="javascript:void(0)" (click)="router.navigate(['client'])">Cliente</a>
+  > {{dadosCliente.name}} > Pedido
+</h4>
+
+
+<div class="w3-container">
+  <button class="w3-btn w3-block w3-blue button_new" (click)="openModal()">Novo</button>
+  <table class="w3-table w3-bordered">
+    <tr>
+      <th>Produto</th>
+      <th>Valor Real</th>
+      <th>Valor Pago</th>
+      <th>Motivo</th>
+    </tr> 
+    <tr *ngFor="let item of dadosItem">
+      <td>{{item.product_name}}</td>
+      <td>{{item.product_price | currency:'BRL':true:'1.2-2'}}</td>
+      <td>{{item.price | currency:'BRL':true:'1.2-2'}}</td>
+      <td>{{item.reason}}</td>
+    </tr>   
+    <tr>
+      <th>Total Real</th>
+      <th>{{pedido_total_real | currency:'BRL':true:'1.2-2'}}</th>
+      <th></th>
+      <th></th>
+    </tr>  
+    <tr>
+      <th>Total Pago</th>
+      <th>{{pedido_total_pago | currency:'BRL':true:'1.2-2'}}</th>
+      <th></th>
+      <th></th>
+    </tr>  
+  </table>
+</div>
+
+
+<div class="w3-modal" [ngStyle]="{'display': displayModal}">
+  <div class="w3-modal-content  w3-animate-zoom">
+    <header class="w3-container w3-indigo"> 
+      <h2>{{dadosCliente.name}}</h2>
+    </header>
+
+    <div class="w3-container">
+      <div class="w3-section">
+        <label>Produtos</label>
+        <select class="w3-select" [(ngModel)]="dadosEnvio.product">
+          <option value="" disabled selected></option>
+          <option *ngFor="let product of dadosProdutos" value="{{product.id}}">{{product.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <footer class="w3-container">
+      <div class="w3-bar w3-margin-bottom">
+        <button class="w3-bar-item w3-button w3-blue" style="width:50%" (click)="saveModal()">Concluir</button>
+        <button class="w3-bar-item w3-button w3-teal" style="width:50%" (click)="closeModal()">Cancelar</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
